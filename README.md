@@ -51,10 +51,9 @@
 
 2.  **Clone the Repository:**
     ```bash
-    git clone <your-repository-url>
-    cd <repository-directory>
+    git clone <https://github.com/mhussam-ai/Grain-Quality-AI>
+    cd <Grain-Quality-AI>
     ```
-    *(Replace `<your-repository-url>` and `<repository-directory>` accordingly)*
 
 3.  **Create a Virtual Environment (Recommended):**
     ```bash
@@ -63,14 +62,6 @@
     ```
 
 4.  **Install Dependencies:**
-    Create a `requirements.txt` file with the following content:
-    ```txt
-    streamlit
-    Pillow
-    google-generativeai
-    python-dotenv
-    ```
-    Then install the packages:
     ```bash
     pip install -r requirements.txt
     ```
@@ -140,7 +131,3 @@
 ## Contributing
 
 Contributions are welcome! Please feel free to submit pull requests or open issues for bugs, feature requests, or improvements.
-
-## License
-
-*(Specify your license here, e.g., MIT License, Apache 2.0, etc. If none, state that.)*
