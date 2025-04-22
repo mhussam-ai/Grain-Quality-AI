@@ -35,7 +35,7 @@
 ## Technology Stack
 
 *   **Frontend:** Streamlit
-*   **AI Model:** Google Gemini (`gemini-2.0-flash` via `google-generativeai` SDK)
+*   **AI Model:** Google Gemini (`gemini-2.0-flash` via `google-generativeai` ADK)
 *   **Image Processing:** Pillow (PIL)
 *   **Environment Variables:** `python-dotenv`
 *   **Language:** Python 3
@@ -125,9 +125,3 @@
 *   **Content Filtering:** The AI service includes safety filters. Analysis might be blocked if the image content triggers these filters.
 
 ---
-
-*(Optional Sections)*
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit pull requests or open issues for bugs, feature requests, or improvements.
