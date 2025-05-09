@@ -539,11 +539,7 @@ def render_analysis_results(analysis):
     detected_grain = identity.get('detected_grain', 'N/A')
     selected_grain = st.session_state.get('selected_grain', 'N/A') # Get user's selection
 
-    # Display Mismatch Warning (If applicable)
-    # Check if analysis is for the grain the user actually selected
-    if selected_grain != 'N/A' and detected_grain != 'N/A' and selected_grain.lower() != detected_grain.lower():
-        st.warning(f"⚠️ Grain Mismatch: You selected '{selected_grain}', but the AI detected '{detected_grain}' in the image. Results shown are for the detected grain.")
-
+    # The specific mismatch warning here is removed, as it's handled by the main error display now.
 
     st.markdown('<h2 class="section-header">Analysis Summary</h2>', unsafe_allow_html=True)
 
@@ -812,7 +808,7 @@ with tab1:
 
                 if 'error' in current_result and current_result['error'] == "Grain Type Mismatch":
                     should_display = True
-                    analysis_to_render = current_result.get("analysis_data_for_detected_grain", {"error": "Missing analysis data."})
+                    analysis_to_render = current_result # Pass the full error object to render_analysis_results
                 elif 'error' in current_result:
                     # Only display error if it corresponds to the *selected* grain attempt
                     if st.session_state.last_analysis_grain == grain_name:
@@ -856,10 +852,10 @@ with tab1:
                             success = False
                             mismatch_error = {
                                  "error": "Grain Type Mismatch",
-                                 "raw_text": f"Analysis determined the image contains '{detected_grain}', but you selected '{grain_name}'. The detailed analysis is for the detected grain ('{detected_grain}').",
-                                 "analysis_data_for_detected_grain": analysis_result
+                                 "raw_text": f"Image Mismatch: You selected '{grain_name}', but the AI detected '{detected_grain}'. Analysis for '{grain_name}' cannot be shown. Please select '{detected_grain}' if you wish to analyze this image, or upload an image of '{grain_name}'.",
+                                 "analysis_data_for_detected_grain": analysis_result # Kept for history/debug
                             }
-                            st.session_state.current_analysis = mismatch_error
+                            st.session_state.current_analysis = mismatch_error # Store the full error object
                             st.session_state.last_analysis_grain = detected_grain
                             save_to_history(mismatch_error, st.session_state.image_data, grain_name)
                         else:
