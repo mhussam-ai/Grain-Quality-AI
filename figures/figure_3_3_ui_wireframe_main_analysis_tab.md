@@ -27,10 +27,19 @@ graph TD
             
             subgraph ResultsArea["Results Area"]
                 direction TB
-                PlaceholderOrResults["Placeholder Text OR Rendered Analysis Results"]
-                RenderedAnalysis["(Detailed breakdown: Grade, Metrics, Defects - if analysis run)"]
+                PlaceholderText["Initial State: '📊 Ready to analyze...' (Before analysis attempt)"]
+                
+                subgraph PostAnalysisDisplay["Post-Analysis Display (One of the following)"]
+                    direction TB
+                    style PostAnalysisDisplay fill:#f5fffa,stroke:#aaa,stroke-width:1px,border-style:dotted
+                    SuccessState["✅ Successful Analysis Displayed (Metrics, Grade, Defects, etc.)"]
+                    ErrorStateGeneric["🔴 Generic Error Displayed (e.g., API Failure, with details)"]
+                    ErrorStateMismatch["🟠 Grain Mismatch Error Displayed ('You selected X, AI detected Y. Analysis for X cannot be shown.', with details)"]
+                end
+                
+                PlaceholderText --> AnalyzeButtonBottom # User clicks Analyze
+                AnalyzeButtonBottom -- Analysis Triggered --> PostAnalysisDisplay # Analysis leads to one of these states
             end
-            AnalyzeButtonBottom["Large 'Analyze [Grain] Sample' Button (Primary)"]
         end
         
         Footer["App Footer: Copyright, Disclaimers"]
@@ -42,11 +51,10 @@ graph TD
         CameraButton --> ConditionalInputArea
         ConditionalInputArea --> ImageDisplay
         ImageDisplay --> AnalyzeButtonBottom
-        AnalyzeButtonBottom --> ResultsArea # Triggers analysis
     end
 
     style MainAnalysisTab fill:#f0f8ff,stroke:#333,stroke-width:2px
     style InputSection fill:#e6e6fa,stroke:#333,stroke-width:1px,border-style:dashed
     style DisplaySection fill:#fafad2,stroke:#333,stroke-width:1px,border-style:dashed
     style ConditionalInputArea fill:#fffacd,stroke:#ccc,stroke-width:1px,border-style:dotted
-    style ResultsArea fill:#f5fffa,stroke:#ccc,stroke-width:1px,border-style:dotted
+    style ResultsArea fill:#f0fff0,stroke:#333,stroke-width:1px,border-style:dashed

@@ -1,24 +1,24 @@
 graph TD
-    A[Python Code: `st.markdown("""<style>...</style>""", unsafe_allow_html=True)] --> B{Embedded CSS Block};
+    A["Python: st.markdown() for CSS injection"] --> B{Embedded CSS Block};
 
     B --> C[CSS Rules for Quality Indicators];
-    C --> C1[`.quality-excellent { color: #27ae60; font-weight: bold; } /* Green */`];
-    C --> C2[`.quality-good { color: #2ecc71; font-weight: bold; } /* Lighter Green */`];
-    C --> C3[`.quality-fair { color: #f39c12; font-weight: bold; } /* Orange */`];
-    C --> C4[`.quality-poor { color: #e74c3c; font-weight: bold; } /* Red */`];
-    C --> C5[`.quality-na { color: #7f8c8d; font-weight: bold; } /* Grey */`];
+    C --> C1[".quality-excellent { color: #27ae60; ... } /* Green */"];
+    C --> C2[".quality-good { color: #2ecc71; ... } /* L. Green */"];
+    C --> C3[".quality-fair { color: #f39c12; ... } /* Orange */"];
+    C --> C4[".quality-poor { color: #e74c3c; ... } /* Red */"];
+    C --> C5[".quality-na { color: #7f8c8d; ... } /* Grey */"];
 
     B --> D[Other CSS Rules (e.g., headers, cards, buttons)];
 
     subgraph PythonHelperFunctions["Python Helper Functions"]
-        E[`get_color_from_score(score)`] --> F{Determine Class based on Score};
+        E["get_color_from_score(score)"] --> F{Determine Class based on Score};
         F -- Score >= 90 --> G1[Returns "excellent"];
         F -- Score >= 75 --> G2[Returns "good"];
         F -- Score >= 60 --> G3[Returns "fair"];
         F -- Else --> G4[Returns "poor"];
         F -- Invalid Score --> G5[Returns "na"];
 
-        H[`get_color_from_grade(grade_str)`] --> I{Determine Class based on Grade String};
+        H["get_color_from_grade(grade_str)"] --> I{Determine Class based on Grade String};
         I -- "excellent" --> J1[Returns "excellent"];
         I -- "good" --> J2[Returns "good"];
         I -- "fair" --> J3[Returns "fair"];
@@ -27,8 +27,8 @@ graph TD
     end
     
     subgraph ResultRendering["Result Rendering Logic (Python)"]
-        K[Example: `render_analysis_results()` or `render_progress_circle()`] --> L{Construct HTML with Dynamic Class};
-        L -- Uses helper function output --> M["`<span class='quality-[dynamic_class]'>...</span>` or similar for progress circle fill"];
+        K["Example: render_analysis_results()"] --> L{Construct HTML with Dynamic Class};
+        L -- Uses helper function output --> M["HTML: <span class='quality-[dynamic_class]'>...</span>"];
     end
 
     G1 --> C1;

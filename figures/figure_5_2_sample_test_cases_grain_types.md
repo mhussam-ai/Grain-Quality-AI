@@ -11,21 +11,21 @@ graph TD
         R2["ID: TC_R_002 | Desc: Poor quality short-grain rice (broken, discolored) | Expected: Correct identification, low scores, high defect report"];
         R3["ID: TC_R_003 | Desc: Image with mixed rice varieties | Expected: AI identifies 'Multiple Types' or primary type, comments on mix"];
         R4["ID: TC_R_004 | Desc: Rice image with significant foreign matter (stones, husks) | Expected: Foreign matter detected, impacts grade"];
-        R5["ID: TC_R_005 | Desc: User selects 'Wheat', uploads Rice image | Expected: Grain Mismatch Warning, analysis for detected 'Rice'"];
+        R5["ID: TC_R_005 | Desc: User selects 'Wheat', uploads Rice image | Expected: 'Grain Type Mismatch' error displayed (e.g., 'You selected Wheat, AI detected Rice...'), no analysis results shown on main tab."];
     end
 
     subgraph WheatTestCases["Wheat Test Cases"]
         W1["ID: TC_W_001 | Desc: Good quality Hard Red Winter wheat | Expected: Correct ID, high scores, wheat-specific characteristics"];
         W2["ID: TC_W_002 | Desc: Wheat with signs of sprouting/mold | Expected: Sprouting/mold detected, low grade, storage warnings"];
         W3["ID: TC_W_003 | Desc: Durum wheat image | Expected: Correct ID as Durum or general Wheat, appropriate usage (pasta)"];
-        W4["ID: TC_W_004 | Desc: User selects 'Corn', uploads Wheat image | Expected: Grain Mismatch Warning, analysis for detected 'Wheat'"];
+        W4["ID: TC_W_004 | Desc: User selects 'Corn', uploads Wheat image | Expected: 'Grain Type Mismatch' error displayed (e.g., 'You selected Corn, AI detected Wheat...'), no analysis results shown on main tab."];
     end
 
     subgraph CornTestCases["Corn Test Cases"]
         C1["ID: TC_C_001 | Desc: Good quality Yellow Dent corn | Expected: Correct ID, high scores, corn-specific characteristics"];
         C2["ID: TC_C_002 | Desc: Corn with broken kernels and insect damage | Expected: Damage detected, low grade, relevant defects"];
         C3["ID: TC_C_003 | Desc: Popcorn kernels image | Expected: ID as Popcorn or Corn, notes on suitability"];
-        C4["ID: TC_C_004 | Desc: User selects 'Rice', uploads Corn image | Expected: Grain Mismatch Warning, analysis for detected 'Corn'"];
+        C4["ID: TC_C_004 | Desc: User selects 'Rice', uploads Corn image | Expected: 'Grain Type Mismatch' error displayed (e.g., 'You selected Rice, AI detected Corn...'), no analysis results shown on main tab."];
     end
     
     subgraph GeneralTestCases["General/Cross-Cutting Test Cases"]

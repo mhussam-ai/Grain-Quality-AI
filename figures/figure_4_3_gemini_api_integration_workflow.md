@@ -35,8 +35,15 @@ sequenceDiagram
         alt JSON found
             SL->>SL: 10a. json_str = match.group(0)
             SL->>SL: 11a. result = json.loads(json_str)
-            SL->>SL: 12a. Check image_quality_assessment.suitable_for_analysis
-            SL-->>User: Display Analysis Results / Warnings
+            SL->>SL: 12a. Check image_quality_assessment.suitable_for_analysis (Store warning if not suitable)
+            SL->>SL: 13a. Check for Grain Mismatch (selected_grain vs result.grain_identity.detected_grain)
+            alt Mismatch Detected
+                SL->>SL: 14aa. Handle Grain Mismatch Error (Prepare specific error message)
+                SL-->>User: Display Mismatch Error Message
+            else No Mismatch
+                SL->>SL: 14ab. Proceed with displaying analysis results
+                SL-->>User: Display Analysis Results (potentially with image quality warnings)
+            end
         else No JSON found
             SL->>SL: 10b. Handle error (Invalid Response Format)
             SL-->>User: Display Error Message

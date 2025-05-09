@@ -11,7 +11,6 @@ graph TD
     D --> D_RC["recommendations = analysis.get('usage_recommendations', {})"];
     D --> D_IQ["img_quality_notes = analysis.get('image_quality_assessment', {})"];
 
-    B --> Warning1[Grain Mismatch Warning (if `selected_grain` != `detected_grain`)];
     
     B --> Header1["`st.markdown('<h2 class=\"section-header\">Analysis Summary</h2>', ...)`"];
     
